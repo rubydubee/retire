@@ -46,9 +46,10 @@ module Tire
 
       def initialize(indices=nil, options={}, &block)
         @indices = Array(indices)
-        @options = options.update(:search_type => 'scan', :scroll => '10m')
         @seen    = 0
+        @options = options.update(:search_type => 'scan', :scroll => '10m')
         @search  = Search.new(@indices, @options, &block)
+        @options = {:search_type => 'scan', :scroll => '10m'}
       end
 
       def url;                Configuration.url + "/_search/scroll";                           end
